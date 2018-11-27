@@ -119,12 +119,13 @@ xcopy /Y "$(QTDIR)\bin\Qt5Guid.dll" "$(SolutionDir)bin\$(Platform)\$(Configurati
       <OutputFile>.\GeneratedFiles\qrc_%(Filename).cpp</OutputFile>
     </QtRcc>
     <PostBuildEvent>
-      <Command>xcopy "$(QTDIR)\bin\Qt5Core.dll" "$(SolutionDir)bin\$(Platform)\$(Configuration)"
-xcopy "$(QTDIR)\bin\Qt5Widgets.dll" "$(SolutionDir)bin\$(Platform)\$(Configuration)"
-xcopy "$(QTDIR)\bin\Qt5Gui.dll" "$(SolutionDir)bin\$(Platform)\$(Configuration)"</Command>
+      <Command>xcopy /Y "$(QTDIR)\bin\Qt5Core.dll" "$(SolutionDir)bin\$(Platform)\$(Configuration)"
+xcopy /Y "$(QTDIR)\bin\Qt5Widgets.dll" "$(SolutionDir)bin\$(Platform)\$(Configuration)"
+xcopy /Y "$(QTDIR)\bin\Qt5Gui.dll" "$(SolutionDir)bin\$(Platform)\$(Configuration)"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\MemoryManager.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\ModernWarfare2FOVChanger.cpp" />
   </ItemGroup>
@@ -136,6 +137,9 @@ xcopy "$(QTDIR)\bin\Qt5Gui.dll" "$(SolutionDir)bin\$(Platform)\$(Configuration)"
   </ItemGroup>
   <ItemGroup>
     <QtRcc Include="ModernWarfare2FOVChanger.qrc" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\MemoryManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">
