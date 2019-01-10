@@ -1,7 +1,6 @@
 #pragma once
 #include <Windows.h>
 #include <string>
-#include <iostream>
 
 class MemoryManager
 {
@@ -11,12 +10,8 @@ private:
 	HANDLE hProc;
 
 public:
-	MemoryManager(const std::string processName);
 	~MemoryManager();
 
-
-
-	//function for reading target process memory
 	template <class T>
 	void read(const DWORD &addressToRead, T &outVar) const
 	{
@@ -24,14 +19,17 @@ public:
 	}
 
 
-	//function for writing to target process memory
-	template <class T>
-	void write(DWORD addressToWrite, T inVar) const
-	{
 
+	template <class T>
+	void write(DWORD &addressToWrite, T &inVar) const
+	{
+		WriteProcessMemory(hProc, (LPVOID)(addressToWrite), &inVar, siezof(inVar), NULL);
 	}
 
-
-
+	bool open(std::string processName);
+	DWORD getProcID() const;
+	bool gameRunning() const;
+	HANDLE getHandle();
+	void closeHandle() const;
 };
 

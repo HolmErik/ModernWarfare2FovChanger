@@ -11,14 +11,10 @@
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
-#include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QFormLayout>
+#include <QtWidgets/QLabel>
 #include <QtWidgets/QMainWindow>
-#include <QtWidgets/QMenuBar>
-#include <QtWidgets/QPlainTextEdit>
-#include <QtWidgets/QSlider>
-#include <QtWidgets/QStatusBar>
-#include <QtWidgets/QToolBar>
-#include <QtWidgets/QVBoxLayout>
+#include <QtWidgets/QSpinBox>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -27,60 +23,62 @@ class Ui_ModernWarfare2FOVChangerClass
 {
 public:
     QWidget *centralWidget;
-    QWidget *verticalLayoutWidget;
-    QVBoxLayout *verticalLayout;
-    QHBoxLayout *horizontalLayout;
-    QSlider *horizontalSlider;
-    QPlainTextEdit *plainTextEdit;
-    QMenuBar *menuBar;
-    QToolBar *mainToolBar;
-    QStatusBar *statusBar;
+    QFormLayout *formLayout_2;
+    QLabel *label;
+    QSpinBox *spinBox;
+    QLabel *label_2;
+    QLabel *label_3;
+    QLabel *GameStatusLabel;
 
     void setupUi(QMainWindow *ModernWarfare2FOVChangerClass)
     {
         if (ModernWarfare2FOVChangerClass->objectName().isEmpty())
             ModernWarfare2FOVChangerClass->setObjectName(QStringLiteral("ModernWarfare2FOVChangerClass"));
-        ModernWarfare2FOVChangerClass->resize(435, 361);
+        ModernWarfare2FOVChangerClass->resize(252, 101);
         centralWidget = new QWidget(ModernWarfare2FOVChangerClass);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
-        verticalLayoutWidget = new QWidget(centralWidget);
-        verticalLayoutWidget->setObjectName(QStringLiteral("verticalLayoutWidget"));
-        verticalLayoutWidget->setGeometry(QRect(20, 145, 301, 75));
-        verticalLayout = new QVBoxLayout(verticalLayoutWidget);
-        verticalLayout->setSpacing(6);
-        verticalLayout->setContentsMargins(11, 11, 11, 11);
-        verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
-        verticalLayout->setContentsMargins(0, 0, 0, 0);
-        horizontalLayout = new QHBoxLayout();
-        horizontalLayout->setSpacing(6);
-        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
-        horizontalSlider = new QSlider(verticalLayoutWidget);
-        horizontalSlider->setObjectName(QStringLiteral("horizontalSlider"));
-        horizontalSlider->setOrientation(Qt::Horizontal);
+        formLayout_2 = new QFormLayout(centralWidget);
+        formLayout_2->setSpacing(6);
+        formLayout_2->setContentsMargins(11, 11, 11, 11);
+        formLayout_2->setObjectName(QStringLiteral("formLayout_2"));
+        label = new QLabel(centralWidget);
+        label->setObjectName(QStringLiteral("label"));
 
-        horizontalLayout->addWidget(horizontalSlider);
+        formLayout_2->setWidget(0, QFormLayout::LabelRole, label);
 
-        plainTextEdit = new QPlainTextEdit(verticalLayoutWidget);
-        plainTextEdit->setObjectName(QStringLiteral("plainTextEdit"));
-        plainTextEdit->setEnabled(true);
-        plainTextEdit->setMaximumSize(QSize(30, 30));
+        spinBox = new QSpinBox(centralWidget);
+        spinBox->setObjectName(QStringLiteral("spinBox"));
+        QSizePolicy sizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(spinBox->sizePolicy().hasHeightForWidth());
+        spinBox->setSizePolicy(sizePolicy);
 
-        horizontalLayout->addWidget(plainTextEdit);
+        formLayout_2->setWidget(0, QFormLayout::FieldRole, spinBox);
 
+        label_2 = new QLabel(centralWidget);
+        label_2->setObjectName(QStringLiteral("label_2"));
+        sizePolicy.setHeightForWidth(label_2->sizePolicy().hasHeightForWidth());
+        label_2->setSizePolicy(sizePolicy);
 
-        verticalLayout->addLayout(horizontalLayout);
+        formLayout_2->setWidget(2, QFormLayout::SpanningRole, label_2);
+
+        label_3 = new QLabel(centralWidget);
+        label_3->setObjectName(QStringLiteral("label_3"));
+        sizePolicy.setHeightForWidth(label_3->sizePolicy().hasHeightForWidth());
+        label_3->setSizePolicy(sizePolicy);
+
+        formLayout_2->setWidget(3, QFormLayout::SpanningRole, label_3);
+
+        GameStatusLabel = new QLabel(centralWidget);
+        GameStatusLabel->setObjectName(QStringLiteral("GameStatusLabel"));
+        sizePolicy.setHeightForWidth(GameStatusLabel->sizePolicy().hasHeightForWidth());
+        GameStatusLabel->setSizePolicy(sizePolicy);
+        GameStatusLabel->setStyleSheet(QStringLiteral("color: rgb(255, 0, 0);"));
+
+        formLayout_2->setWidget(4, QFormLayout::SpanningRole, GameStatusLabel);
 
         ModernWarfare2FOVChangerClass->setCentralWidget(centralWidget);
-        menuBar = new QMenuBar(ModernWarfare2FOVChangerClass);
-        menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 435, 21));
-        ModernWarfare2FOVChangerClass->setMenuBar(menuBar);
-        mainToolBar = new QToolBar(ModernWarfare2FOVChangerClass);
-        mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
-        ModernWarfare2FOVChangerClass->addToolBar(Qt::TopToolBarArea, mainToolBar);
-        statusBar = new QStatusBar(ModernWarfare2FOVChangerClass);
-        statusBar->setObjectName(QStringLiteral("statusBar"));
-        ModernWarfare2FOVChangerClass->setStatusBar(statusBar);
 
         retranslateUi(ModernWarfare2FOVChangerClass);
 
@@ -90,6 +88,10 @@ public:
     void retranslateUi(QMainWindow *ModernWarfare2FOVChangerClass)
     {
         ModernWarfare2FOVChangerClass->setWindowTitle(QApplication::translate("ModernWarfare2FOVChangerClass", "ModernWarfare2FOVChanger", nullptr));
+        label->setText(QApplication::translate("ModernWarfare2FOVChangerClass", "Field of view", nullptr));
+        label_2->setText(QApplication::translate("ModernWarfare2FOVChangerClass", "+ FOV  [Numpad +]", nullptr));
+        label_3->setText(QApplication::translate("ModernWarfare2FOVChangerClass", "-  FOV  [Numpad -]", nullptr));
+        GameStatusLabel->setText(QApplication::translate("ModernWarfare2FOVChangerClass", "Waiting for IW4SP.exe...", nullptr));
     } // retranslateUi
 
 };
