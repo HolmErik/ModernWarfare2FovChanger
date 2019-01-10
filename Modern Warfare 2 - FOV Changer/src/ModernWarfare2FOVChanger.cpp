@@ -3,14 +3,13 @@ ModernWarfare2FOVChanger::ModernWarfare2FOVChanger(QWidget *parent)
 	: QMainWindow(parent)
 {
 	ui.setupUi(this);
-	setWindowTitle("MW2 FOV changer");
-	mem.open("Untitled - Notepad");
+	setWindowTitle("MW2 FoV Changer");
 
 
-	//make sure the game status is updated every second
+	//make sure the game status is updated every half second
 	GameStatusLabel = findChild<QLabel*>("GameStatusLabel");
 	connect(GameStatusTimer, SIGNAL(timeout()), this, SLOT(updateGameStatus()));
-	GameStatusTimer->start(500);
+	GameStatusTimer->start(updateGameStatusTime);
 }
 
 ModernWarfare2FOVChanger::~ModernWarfare2FOVChanger()

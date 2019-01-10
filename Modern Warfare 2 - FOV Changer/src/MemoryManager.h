@@ -1,19 +1,21 @@
 #pragma once
 #include <Windows.h>
 #include <string>
+#include "MemoryAddresses.h"
 
 class MemoryManager
 {
 private:
 	HWND hWnd;
-	DWORD procID;
+	unsigned long procID;
 	HANDLE hProc;
+	MemoryAddresses memadd;
 
 public:
 	~MemoryManager();
 
 	template <class T>
-	void read(const DWORD &addressToRead, T &outVar) const
+	void read(const unsigned long &addressToRead, T &outVar) const
 	{
 		ReadProcessMemory(hProc, (LPCVOID)(addressToRead), &outVar, sizeof(outVar), NULL);
 	}
@@ -21,13 +23,13 @@ public:
 
 
 	template <class T>
-	void write(DWORD &addressToWrite, T &inVar) const
+	void write(unsigned long &addressToWrite, T &inVar) const
 	{
 		WriteProcessMemory(hProc, (LPVOID)(addressToWrite), &inVar, siezof(inVar), NULL);
 	}
 
 	bool open(std::string processName);
-	DWORD getProcID() const;
+	unsigned long getProcID() const;
 	bool gameRunning() const;
 	HANDLE getHandle();
 	void closeHandle() const;

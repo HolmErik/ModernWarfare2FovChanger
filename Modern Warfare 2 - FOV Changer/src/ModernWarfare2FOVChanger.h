@@ -28,6 +28,7 @@ private:
 	QLabel *GameStatusLabel;
 	QTimer *GameStatusTimer = new QTimer(this);
 	MemoryManager mem;
-	DWORD* exitCode = new DWORD;
+	unsigned long* exitCode = new unsigned long;
+	int updateGameStatusTime = 500;
 
 };

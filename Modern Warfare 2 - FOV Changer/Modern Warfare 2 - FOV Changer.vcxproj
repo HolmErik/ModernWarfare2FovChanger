@@ -139,6 +139,7 @@ xcopy /Y "$(QTDIR)\bin\Qt5Gui.dll" "$(SolutionDir)bin\$(Platform)\$(Configuratio
     <QtRcc Include="ModernWarfare2FOVChanger.qrc" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\MemoryAddresses.h" />
     <ClInclude Include="src\MemoryManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

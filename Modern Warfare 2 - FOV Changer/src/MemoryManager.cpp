@@ -17,7 +17,7 @@ MemoryManager::~MemoryManager()
 		CloseHandle(hProc);
 }
 
-DWORD MemoryManager::getProcID() const
+unsigned long MemoryManager::getProcID() const
 {
 	return procID;
 }
