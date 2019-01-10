@@ -34,7 +34,7 @@ public:
     {
         if (ModernWarfare2FOVChangerClass->objectName().isEmpty())
             ModernWarfare2FOVChangerClass->setObjectName(QStringLiteral("ModernWarfare2FOVChangerClass"));
-        ModernWarfare2FOVChangerClass->resize(252, 101);
+        ModernWarfare2FOVChangerClass->resize(268, 101);
         centralWidget = new QWidget(ModernWarfare2FOVChangerClass);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         formLayout_2 = new QFormLayout(centralWidget);
@@ -53,6 +53,9 @@ public:
         sizePolicy.setVerticalStretch(0);
         sizePolicy.setHeightForWidth(spinBox->sizePolicy().hasHeightForWidth());
         spinBox->setSizePolicy(sizePolicy);
+        spinBox->setMinimum(50);
+        spinBox->setMaximum(120);
+        spinBox->setValue(90);
 
         formLayout_2->setWidget(0, QFormLayout::FieldRole, spinBox);
 
