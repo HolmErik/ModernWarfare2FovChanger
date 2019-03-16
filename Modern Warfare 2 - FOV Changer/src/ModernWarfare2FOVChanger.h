@@ -5,6 +5,7 @@
 #include "QtWidgets/qlabel.h"
 #include "qtimer.h"
 #include "MemoryManager.h"
+#include "qstring.h"
 
 #define PROCESSRUNNING 259
 
@@ -19,6 +20,7 @@ public:
 
 public slots:
 	void updateGameStatus();
+	void updateFov(int fov);
 
 private:
 	Ui::ModernWarfare2FOVChangerClass ui;
@@ -30,5 +32,6 @@ private:
 	MemoryManager mem;
 	unsigned long* exitCode = new unsigned long;
 	int updateGameStatusTime = 500;
+	bool isGameRunning = false;
 
 };

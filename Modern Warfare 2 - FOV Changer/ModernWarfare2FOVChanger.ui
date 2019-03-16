@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>282</width>
-    <height>101</height>
+    <height>105</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -35,6 +35,12 @@
         <horstretch>0</horstretch>
         <verstretch>0</verstretch>
        </sizepolicy>
+      </property>
+      <property name="accelerated">
+       <bool>true</bool>
+      </property>
+      <property name="keyboardTracking">
+       <bool>false</bool>
       </property>
       <property name="minimum">
        <number>50</number>

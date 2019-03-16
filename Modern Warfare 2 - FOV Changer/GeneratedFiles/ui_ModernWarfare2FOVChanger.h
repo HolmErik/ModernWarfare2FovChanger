@@ -37,7 +37,7 @@ public:
     {
         if (ModernWarfare2FOVChangerClass->objectName().isEmpty())
             ModernWarfare2FOVChangerClass->setObjectName(QStringLiteral("ModernWarfare2FOVChangerClass"));
-        ModernWarfare2FOVChangerClass->resize(282, 101);
+        ModernWarfare2FOVChangerClass->resize(282, 105);
         centralWidget = new QWidget(ModernWarfare2FOVChangerClass);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         gridLayout = new QGridLayout(centralWidget);
@@ -58,6 +58,8 @@ public:
         spinBox->setObjectName(QStringLiteral("spinBox"));
         sizePolicy.setHeightForWidth(spinBox->sizePolicy().hasHeightForWidth());
         spinBox->setSizePolicy(sizePolicy);
+        spinBox->setAccelerated(true);
+        spinBox->setKeyboardTracking(false);
         spinBox->setMinimum(50);
         spinBox->setMaximum(120);
         spinBox->setValue(90);

@@ -33,5 +33,6 @@ public:
 	bool gameRunning() const;
 	HANDLE getHandle();
 	void closeHandle() const;
+	DWORD getExeBaseAddress();
 };
 
