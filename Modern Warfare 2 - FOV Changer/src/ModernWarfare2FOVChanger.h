@@ -24,8 +24,8 @@ public slots:
 
 private:
 	Ui::ModernWarfare2FOVChangerClass ui;
-	std::string gameStatusLabelGameRunningText = "IW4SP.exe is running!";
-	std::string gameStatusLabelGameNotRunningText = "Waiting for IW4SP.exe...";
+	std::string gameStatusLabelGameRunningText = "IW4SP.EXE is running!";
+	std::string gameStatusLabelGameNotRunningText = "Waiting for IW4SP.EXE...";
 	std::string windowName = "Modern Warfare 2";
 	QLabel *GameStatusLabel;
 	QTimer *GameStatusTimer = new QTimer(this);

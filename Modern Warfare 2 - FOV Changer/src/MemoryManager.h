@@ -10,6 +10,7 @@ private:
 	unsigned long procID;
 	HANDLE hProc;
 	MemoryAddresses memadd;
+	DWORD exeAddress = 0x00400000;
 
 public:
 	~MemoryManager();
@@ -33,6 +34,6 @@ public:
 	bool gameRunning() const;
 	HANDLE getHandle();
 	void closeHandle() const;
-	DWORD getExeBaseAddress();
+	LPVOID getExeBaseAddress();
 };
 

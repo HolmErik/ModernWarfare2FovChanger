@@ -13,6 +13,7 @@ ModernWarfare2FOVChanger::ModernWarfare2FOVChanger(QWidget *parent)
 	GameStatusLabel = findChild<QLabel*>("GameStatusLabel");
 	connect(GameStatusTimer, SIGNAL(timeout()), this, SLOT(updateGameStatus()));
 	connect(ui.spinBox, SIGNAL(valueChanged(int)), this, SLOT(updateFov(int)));
+	updateFov(ui.spinBox->value());
 	GameStatusTimer->start(updateGameStatusTime);
 }
 

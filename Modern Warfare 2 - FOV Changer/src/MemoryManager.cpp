@@ -1,24 +1,47 @@
 #include "MemoryManager.h"
 #include <iostream>
 #include "psapi.h"
+#include <string>
 
 bool MemoryManager::open(std::string processName)
 {
 	hWnd = FindWindowA(NULL, processName.c_str());
 	GetWindowThreadProcessId(hWnd, &procID);
 	hProc = OpenProcess(PROCESS_VM_READ | PROCESS_VM_WRITE | PROCESS_QUERY_INFORMATION | PROCESS_QUERY_LIMITED_INFORMATION, false, procID);
-	getExeBaseAddress();
-	if (hProc) return true;
+
+	if (hProc)
+	{
+		getExeBaseAddress();
+		return true;
+	}
 	else return false;
 }
 
 
-DWORD MemoryManager::getExeBaseAddress()
+LPVOID MemoryManager::getExeBaseAddress()
 {
-	TCHAR nameProc[MAX_PATH];
-	GetProcessImageFileName(hProc, nameProc, MAX_PATH);
-	std::cout << nameProc << std::endl;
-	//https://stackoverflow.com/questions/14467229/get-base-address-of-process?rq=1
+	HMODULE hMods[1024];
+	DWORD cbNeeded;
+
+	if (EnumProcessModules(hProc, hMods, sizeof(hMods), &cbNeeded))
+	{
+		for (int i = 0; i < (cbNeeded / sizeof(HMODULE)); i++)
+		{
+			TCHAR moduleName[MAX_PATH];
+
+			if (GetModuleFileNameEx(hProc, hMods[i], moduleName, sizeof(moduleName) / sizeof(TCHAR)))
+			{
+				std::wstring wstrModuleName = moduleName;
+
+				if (wstrModuleName.find(L"Modern Warfare 2") != std::string::npos)
+				{
+					MODULEINFO modInfo;
+					GetModuleInformation(hProc, hMods[i], &modInfo, sizeof(MODULEINFO));
+					return modInfo.lpBaseOfDll;
+				}
+			}
+		}
+	}
 	return 0;
 }
 
