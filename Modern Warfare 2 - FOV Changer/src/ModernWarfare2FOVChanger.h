@@ -20,7 +20,8 @@ public:
 
 public slots:
 	void updateGameStatus();
-	void updateFov(int fov);
+	void FovCheck();
+	void updateFov(double fov);
 
 private:
 	Ui::ModernWarfare2FOVChangerClass ui;
@@ -29,9 +30,11 @@ private:
 	std::string windowName = "Modern Warfare 2";
 	QLabel *GameStatusLabel;
 	QTimer *GameStatusTimer = new QTimer(this);
+	QTimer *FovCheckTimer = new QTimer(this);
 	MemoryManager mem;
 	unsigned long* exitCode = new unsigned long;
 	int updateGameStatusTime = 500;
+	int FovCheckTime = 500;
 	bool isGameRunning = false;
 
 };

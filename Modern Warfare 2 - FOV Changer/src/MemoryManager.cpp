@@ -11,14 +11,14 @@ bool MemoryManager::open(std::string processName)
 
 	if (hProc)
 	{
-		getExeBaseAddress();
+		fovAddress = getExeBaseAddress() + fovOffset;
 		return true;
 	}
 	else return false;
 }
 
 
-LPVOID MemoryManager::getExeBaseAddress()
+DWORD MemoryManager::getExeBaseAddress()
 {
 	HMODULE hMods[1024];
 	DWORD cbNeeded;
@@ -37,7 +37,7 @@ LPVOID MemoryManager::getExeBaseAddress()
 				{
 					MODULEINFO modInfo;
 					GetModuleInformation(hProc, hMods[i], &modInfo, sizeof(MODULEINFO));
-					return modInfo.lpBaseOfDll;
+					return (DWORD)modInfo.lpBaseOfDll;
 				}
 			}
 		}

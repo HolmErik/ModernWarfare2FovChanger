@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>282</width>
-    <height>105</height>
+    <width>227</width>
+    <height>72</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -15,70 +15,48 @@
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QGridLayout" name="gridLayout">
-    <item row="2" column="0" colspan="3">
-     <widget class="QLabel" name="fovincrementlabel">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="text">
-       <string>+ FOV  [Numpad +]</string>
-      </property>
-     </widget>
-    </item>
     <item row="1" column="1">
-     <widget class="QSpinBox" name="spinBox">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
+     <widget class="QDoubleSpinBox" name="spinBox">
       <property name="accelerated">
        <bool>true</bool>
       </property>
-      <property name="keyboardTracking">
-       <bool>false</bool>
+      <property name="decimals">
+       <number>0</number>
       </property>
       <property name="minimum">
-       <number>50</number>
+       <double>1.000000000000000</double>
       </property>
       <property name="maximum">
-       <number>120</number>
+       <double>179.000000000000000</double>
       </property>
       <property name="value">
-       <number>90</number>
+       <double>90.000000000000000</double>
       </property>
      </widget>
     </item>
-    <item row="3" column="0" colspan="3">
-     <widget class="QLabel" name="fovdecrementlabel">
+    <item row="1" column="2" rowspan="2" colspan="3">
+     <widget class="QLabel" name="MW2">
       <property name="sizePolicy">
-       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="text">
-       <string>-  FOV  [Numpad -]</string>
-      </property>
-     </widget>
-    </item>
-    <item row="4" column="0" colspan="3">
-     <widget class="QLabel" name="GameStatusLabel">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+       <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
         <horstretch>0</horstretch>
         <verstretch>0</verstretch>
        </sizepolicy>
       </property>
       <property name="styleSheet">
-       <string notr="true">color: rgb(255, 0, 0);</string>
+       <string notr="true">font: 20pt &quot;MS Shell Dlg 2&quot;;</string>
       </property>
       <property name="text">
-       <string>Waiting for IW4SP.exe...</string>
+       <string>MW2</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="3">
+     <widget class="QPushButton" name="Exit">
+      <property name="text">
+       <string>Exit</string>
       </property>
      </widget>
     </item>
@@ -95,29 +73,19 @@
       </property>
      </widget>
     </item>
-    <item row="1" column="2" rowspan="2" colspan="3">
-     <widget class="QLabel" name="MW2">
+    <item row="3" column="0" colspan="3">
+     <widget class="QLabel" name="GameStatusLabel">
       <property name="sizePolicy">
-       <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
         <horstretch>0</horstretch>
         <verstretch>0</verstretch>
        </sizepolicy>
       </property>
       <property name="styleSheet">
-       <string notr="true">font: 36pt &quot;MS Shell Dlg 2&quot;;</string>
+       <string notr="true">color: rgb(255, 0, 0);</string>
       </property>
       <property name="text">
-       <string>MW2</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignCenter</set>
-      </property>
-     </widget>
-    </item>
-    <item row="4" column="3">
-     <widget class="QPushButton" name="Exit">
-      <property name="text">
-       <string>Exit</string>
+       <string>Waiting for IW4SP.exe...</string>
       </property>
      </widget>
     </item>

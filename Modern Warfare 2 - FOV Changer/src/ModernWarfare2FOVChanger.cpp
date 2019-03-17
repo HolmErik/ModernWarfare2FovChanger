@@ -5,29 +5,39 @@ ModernWarfare2FOVChanger::ModernWarfare2FOVChanger(QWidget *parent)
 	: QMainWindow(parent)
 {
 	ui.setupUi(this);
-	setWindowTitle("MW2 FoV Changer");
-
-	AllocConsole();
-	freopen("CONOUT$", "w", stdout);
+	setWindowFlag(Qt::MSWindowsFixedSizeDialogHint);
+	setWindowTitle("MW2");
 	//make sure the game status is updated every half second
 	GameStatusLabel = findChild<QLabel*>("GameStatusLabel");
 	connect(GameStatusTimer, SIGNAL(timeout()), this, SLOT(updateGameStatus()));
-	connect(ui.spinBox, SIGNAL(valueChanged(int)), this, SLOT(updateFov(int)));
+	connect(ui.spinBox, SIGNAL(valueChanged(double)), this, SLOT(updateFov(double)));
+	connect(FovCheckTimer, SIGNAL(timeout()), this, SLOT(FovCheck()));
 	updateFov(ui.spinBox->value());
 	GameStatusTimer->start(updateGameStatusTime);
+	FovCheckTimer->start(FovCheckTime);
 }
 
 ModernWarfare2FOVChanger::~ModernWarfare2FOVChanger()
 {
-	FreeConsole();
 	delete exitCode;
+	delete GameStatusTimer;
+	delete FovCheckTimer;
 }
 
-
-
-void ModernWarfare2FOVChanger::updateFov(int fov)
+void ModernWarfare2FOVChanger::updateFov(double fov)
 {
-	std::cout << "REE" << std::endl;
+	mem.write<float>((float)fov);
+}
+
+void ModernWarfare2FOVChanger::FovCheck()
+{
+	float tmp;
+	mem.read<float>(tmp);
+	float diff = tmp - ui.spinBox->value();
+	if (abs(diff) > 0.1)
+	{
+		updateFov(ui.spinBox->value());
+	}
 }
 
 

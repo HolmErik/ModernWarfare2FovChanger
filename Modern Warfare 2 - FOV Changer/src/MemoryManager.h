@@ -1,7 +1,6 @@
 #pragma once
 #include <Windows.h>
 #include <string>
-#include "MemoryAddresses.h"
 
 class MemoryManager
 {
@@ -9,24 +8,22 @@ private:
 	HWND hWnd;
 	unsigned long procID;
 	HANDLE hProc;
-	MemoryAddresses memadd;
-	DWORD exeAddress = 0x00400000;
+	DWORD fovOffset = 0x1578B50; //offset iw4sp.exe +  0x1578B50;
+	DWORD fovAddress = 0x0;
 
 public:
 	~MemoryManager();
 
 	template <class T>
-	void read(const unsigned long &addressToRead, T &outVar) const
+	void read(T &outVar) const
 	{
-		ReadProcessMemory(hProc, (LPCVOID)(addressToRead), &outVar, sizeof(outVar), NULL);
+		ReadProcessMemory(hProc, (LPCVOID)(fovAddress), &outVar, sizeof(outVar), NULL);
 	}
 
-
-
-	template <class T>
-	void write(unsigned long &addressToWrite, T &inVar) const
+	template<typename T>
+	void write(const T& buffer) const
 	{
-		WriteProcessMemory(hProc, (LPVOID)(addressToWrite), &inVar, siezof(inVar), NULL);
+		WriteProcessMemory(hProc, (LPVOID)(fovAddress), &buffer, sizeof(buffer), NULL);
 	}
 
 	bool open(std::string processName);
@@ -34,6 +31,6 @@ public:
 	bool gameRunning() const;
 	HANDLE getHandle();
 	void closeHandle() const;
-	LPVOID getExeBaseAddress();
+	DWORD getExeBaseAddress();
 };
 

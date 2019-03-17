@@ -11,11 +11,11 @@
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QDoubleSpinBox>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QPushButton>
-#include <QtWidgets/QSpinBox>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -25,61 +25,49 @@ class Ui_ModernWarfare2FOVChangerClass
 public:
     QWidget *centralWidget;
     QGridLayout *gridLayout;
-    QLabel *fovincrementlabel;
-    QSpinBox *spinBox;
-    QLabel *fovdecrementlabel;
-    QLabel *GameStatusLabel;
-    QLabel *fovlabel;
+    QDoubleSpinBox *spinBox;
     QLabel *MW2;
     QPushButton *Exit;
+    QLabel *fovlabel;
+    QLabel *GameStatusLabel;
 
     void setupUi(QMainWindow *ModernWarfare2FOVChangerClass)
     {
         if (ModernWarfare2FOVChangerClass->objectName().isEmpty())
             ModernWarfare2FOVChangerClass->setObjectName(QStringLiteral("ModernWarfare2FOVChangerClass"));
-        ModernWarfare2FOVChangerClass->resize(282, 105);
+        ModernWarfare2FOVChangerClass->resize(227, 72);
         centralWidget = new QWidget(ModernWarfare2FOVChangerClass);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         gridLayout = new QGridLayout(centralWidget);
         gridLayout->setSpacing(6);
         gridLayout->setContentsMargins(11, 11, 11, 11);
         gridLayout->setObjectName(QStringLiteral("gridLayout"));
-        fovincrementlabel = new QLabel(centralWidget);
-        fovincrementlabel->setObjectName(QStringLiteral("fovincrementlabel"));
-        QSizePolicy sizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
-        sizePolicy.setHorizontalStretch(0);
-        sizePolicy.setVerticalStretch(0);
-        sizePolicy.setHeightForWidth(fovincrementlabel->sizePolicy().hasHeightForWidth());
-        fovincrementlabel->setSizePolicy(sizePolicy);
-
-        gridLayout->addWidget(fovincrementlabel, 2, 0, 1, 3);
-
-        spinBox = new QSpinBox(centralWidget);
+        spinBox = new QDoubleSpinBox(centralWidget);
         spinBox->setObjectName(QStringLiteral("spinBox"));
-        sizePolicy.setHeightForWidth(spinBox->sizePolicy().hasHeightForWidth());
-        spinBox->setSizePolicy(sizePolicy);
         spinBox->setAccelerated(true);
-        spinBox->setKeyboardTracking(false);
-        spinBox->setMinimum(50);
-        spinBox->setMaximum(120);
+        spinBox->setDecimals(0);
+        spinBox->setMinimum(1);
+        spinBox->setMaximum(179);
         spinBox->setValue(90);
 
         gridLayout->addWidget(spinBox, 1, 1, 1, 1);
 
-        fovdecrementlabel = new QLabel(centralWidget);
-        fovdecrementlabel->setObjectName(QStringLiteral("fovdecrementlabel"));
-        sizePolicy.setHeightForWidth(fovdecrementlabel->sizePolicy().hasHeightForWidth());
-        fovdecrementlabel->setSizePolicy(sizePolicy);
+        MW2 = new QLabel(centralWidget);
+        MW2->setObjectName(QStringLiteral("MW2"));
+        QSizePolicy sizePolicy(QSizePolicy::Ignored, QSizePolicy::Ignored);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(MW2->sizePolicy().hasHeightForWidth());
+        MW2->setSizePolicy(sizePolicy);
+        MW2->setStyleSheet(QStringLiteral("font: 20pt \"MS Shell Dlg 2\";"));
+        MW2->setAlignment(Qt::AlignCenter);
 
-        gridLayout->addWidget(fovdecrementlabel, 3, 0, 1, 3);
+        gridLayout->addWidget(MW2, 1, 2, 2, 3);
 
-        GameStatusLabel = new QLabel(centralWidget);
-        GameStatusLabel->setObjectName(QStringLiteral("GameStatusLabel"));
-        sizePolicy.setHeightForWidth(GameStatusLabel->sizePolicy().hasHeightForWidth());
-        GameStatusLabel->setSizePolicy(sizePolicy);
-        GameStatusLabel->setStyleSheet(QStringLiteral("color: rgb(255, 0, 0);"));
+        Exit = new QPushButton(centralWidget);
+        Exit->setObjectName(QStringLiteral("Exit"));
 
-        gridLayout->addWidget(GameStatusLabel, 4, 0, 1, 3);
+        gridLayout->addWidget(Exit, 3, 3, 1, 1);
 
         fovlabel = new QLabel(centralWidget);
         fovlabel->setObjectName(QStringLiteral("fovlabel"));
@@ -91,22 +79,16 @@ public:
 
         gridLayout->addWidget(fovlabel, 1, 0, 1, 1);
 
-        MW2 = new QLabel(centralWidget);
-        MW2->setObjectName(QStringLiteral("MW2"));
-        QSizePolicy sizePolicy2(QSizePolicy::Ignored, QSizePolicy::Ignored);
+        GameStatusLabel = new QLabel(centralWidget);
+        GameStatusLabel->setObjectName(QStringLiteral("GameStatusLabel"));
+        QSizePolicy sizePolicy2(QSizePolicy::Fixed, QSizePolicy::Fixed);
         sizePolicy2.setHorizontalStretch(0);
         sizePolicy2.setVerticalStretch(0);
-        sizePolicy2.setHeightForWidth(MW2->sizePolicy().hasHeightForWidth());
-        MW2->setSizePolicy(sizePolicy2);
-        MW2->setStyleSheet(QStringLiteral("font: 36pt \"MS Shell Dlg 2\";"));
-        MW2->setAlignment(Qt::AlignCenter);
+        sizePolicy2.setHeightForWidth(GameStatusLabel->sizePolicy().hasHeightForWidth());
+        GameStatusLabel->setSizePolicy(sizePolicy2);
+        GameStatusLabel->setStyleSheet(QStringLiteral("color: rgb(255, 0, 0);"));
 
-        gridLayout->addWidget(MW2, 1, 2, 2, 3);
-
-        Exit = new QPushButton(centralWidget);
-        Exit->setObjectName(QStringLiteral("Exit"));
-
-        gridLayout->addWidget(Exit, 4, 3, 1, 1);
+        gridLayout->addWidget(GameStatusLabel, 3, 0, 1, 3);
 
         ModernWarfare2FOVChangerClass->setCentralWidget(centralWidget);
 
@@ -118,12 +100,10 @@ public:
     void retranslateUi(QMainWindow *ModernWarfare2FOVChangerClass)
     {
         ModernWarfare2FOVChangerClass->setWindowTitle(QApplication::translate("ModernWarfare2FOVChangerClass", "ModernWarfare2FOVChanger", nullptr));
-        fovincrementlabel->setText(QApplication::translate("ModernWarfare2FOVChangerClass", "+ FOV  [Numpad +]", nullptr));
-        fovdecrementlabel->setText(QApplication::translate("ModernWarfare2FOVChangerClass", "-  FOV  [Numpad -]", nullptr));
-        GameStatusLabel->setText(QApplication::translate("ModernWarfare2FOVChangerClass", "Waiting for IW4SP.exe...", nullptr));
-        fovlabel->setText(QApplication::translate("ModernWarfare2FOVChangerClass", "Field of view", nullptr));
         MW2->setText(QApplication::translate("ModernWarfare2FOVChangerClass", "MW2", nullptr));
         Exit->setText(QApplication::translate("ModernWarfare2FOVChangerClass", "Exit", nullptr));
+        fovlabel->setText(QApplication::translate("ModernWarfare2FOVChangerClass", "Field of view", nullptr));
+        GameStatusLabel->setText(QApplication::translate("ModernWarfare2FOVChangerClass", "Waiting for IW4SP.exe...", nullptr));
     } // retranslateUi
 
 };
