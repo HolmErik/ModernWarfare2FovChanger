@@ -26,11 +26,15 @@ ModernWarfare2FOVChanger::~ModernWarfare2FOVChanger()
 
 void ModernWarfare2FOVChanger::updateFov(double fov)
 {
+	if (!isGameRunning)
+		return;
 	mem.write<float>((float)fov);
 }
 
 void ModernWarfare2FOVChanger::FovCheck()
 {
+	if (!isGameRunning)
+		return;
 	float tmp;
 	mem.read<float>(tmp);
 	float diff = tmp - ui.spinBox->value();
